@@ -1,6 +1,6 @@
 {
   "name": "v-reactive-hooks",
-  "version": "0.0.12",
+  "version": "0.0.1",
   "description": "base on vue",
   "main": "./lib/index.js",
   "scripts": {
