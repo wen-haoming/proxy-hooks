@@ -1,0 +1,31 @@
+{
+  "name": "v-reactive-hooks",
+  "version": "0.0.3",
+  "description": "base on vue",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "gulp"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "package.json",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.com/"
+  },
+  "dependencies": {
+    "@vue/reactivity": "^3.0.0-beta.18",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isequal": "^4.5.0",
+    "lodash.throttle": "^4.1.1"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6"
+  },
+  "keywords": [],
+  "author": "wen-haoming",
+  "license": "MIT"
+}
