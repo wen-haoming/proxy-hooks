@@ -1,6 +1,6 @@
 {
   "name": "v-reactive-hooks",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "base on vue",
   "main": "./lib/index.js",
   "scripts": {
@@ -26,6 +26,6 @@
     "react": "^16.8.6"
   },
   "keywords": [],
-  "author": "wen-haoming",
+  "author": "haoming-wen",
   "license": "MIT"
 }
