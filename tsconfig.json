@@ -1,27 +1,24 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ES6",
     "moduleResolution": "node",
     "importHelpers": true,
     "jsx": "react",
+    "allowJs": true,
     "esModuleInterop": true,
     "sourceMap": true,
-    "baseUrl": "./",
-    "strict": true,
-    "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
-    },
-    "allowSyntheticDefaultImports": true
+    "baseUrl": ".",
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "declaration": false
   },
   "exclude": [
     "node_modules",
     "lib",
     "es",
     "dist",
-    "typings",
+    "**/__tests__",
     "**/__test__",
-    "test"
+    "**/demo"
   ]
 }
