@@ -1,6 +1,6 @@
 {
   "name": "v-reactive-hooks",
-  "version": "0.0.6-0",
+  "version": "0.0.6",
   "description": "base on vue",
   "main": "./lib/index.js",
   "scripts": {
@@ -22,7 +22,10 @@
   "peerDependencies": {
     "react": "^16.8.6"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "hooks"
+  ],
   "author": "wen-haoming",
   "license": "ISC"
 }
