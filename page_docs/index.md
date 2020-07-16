@@ -10,4 +10,6 @@ npm i v-reactive-hooks --save
 
 ![avatar](./pic1.png)
 
+如果我们使用了 useReactive 呢？
+
 ![avatar](./pic2.png)

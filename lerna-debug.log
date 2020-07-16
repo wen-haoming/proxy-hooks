@@ -6,20 +6,52 @@
 1 silly flags   script: 'build',
 1 silly flags   args: []
 1 silly flags }
-2 verbose rootPath /Users/wenhaoming/Desktop/学习/vhook
+2 verbose rootPath /Users/wenhaoming/Desktop/学习/vhooks
 3 info version 2.11.0
-4 silly existsSync /Users/wenhaoming/Desktop/学习/vhook/VERSION
+4 silly existsSync /Users/wenhaoming/Desktop/学习/vhooks/VERSION
 5 info versioning independent
 6 silly initialize attempt
 7 silly initialize success
 8 silly execute attempt
 9 silly runScriptInDir build [] vhooks
-10 silly getExecOpts { cwd: '/Users/wenhaoming/Desktop/学习/vhook/packages/vhooks' }
+10 silly getExecOpts { cwd: '/Users/wenhaoming/Desktop/学习/vhooks/packages/vhooks' }
 11 error build Errored while running script in 'v-reactive-hooks'
 12 error execute callback with error
 13 error Error: Command failed: npm run build
-13 error [20:33:30] Task never defined: default
-13 error [20:33:30] To list available tasks, try running: gulp --tasks
+13 error [12:17:54] 'cjs' errored after 2.65 s
+13 error [12:17:54] [31mError[39m in plugin "[36mgulp-babel[39m"
+13 error Message:
+13 error     Duplicate plugin/preset detected.
+13 error If you'd like to use two separate instances of a plugin,
+13 error they need separate names, e.g.
+13 error
+13 error   plugins: [
+13 error     ['some-plugin', {}],
+13 error     ['some-plugin', {}, 'some unique name'],
+13 error   ]
+13 error
+13 error Duplicates detected are:
+13 error [
+13 error   {
+13 error     "alias": "/Users/wenhaoming/Desktop/学习/vhooks/node_modules/@babel/preset-react/lib/index.js",
+13 error     "dirname": "/Users/wenhaoming/Desktop/学习/vhooks",
+13 error     "ownPass": false,
+13 error     "file": {
+13 error       "request": "@babel/preset-react",
+13 error       "resolved": "/Users/wenhaoming/Desktop/学习/vhooks/node_modules/@babel/preset-react/lib/index.js"
+13 error     }
+13 error   },
+13 error   {
+13 error     "alias": "/Users/wenhaoming/Desktop/学习/vhooks/node_modules/@babel/preset-react/lib/index.js",
+13 error     "dirname": "/Users/wenhaoming/Desktop/学习/vhooks",
+13 error     "ownPass": false,
+13 error     "file": {
+13 error       "request": "@babel/react",
+13 error       "resolved": "/Users/wenhaoming/Desktop/学习/vhooks/node_modules/@babel/preset-react/lib/index.js"
+13 error     }
+13 error   }
+13 error ]
+13 error [12:17:54] 'default' errored after 2.66 s
 13 error npm ERR! code ELIFECYCLE
 13 error npm ERR! errno 1
 13 error npm ERR! v-reactive-hooks@0.0.6-0 build: `gulp`
@@ -30,11 +62,15 @@
 13 error npm WARN Local package.json exists, but node_modules missing, did you mean to install?
 13 error
 13 error npm ERR! A complete log of this run can be found in:
-13 error npm ERR!     /Users/wenhaoming/.npm/_logs/2020-07-15T12_33_30_724Z-debug.log
+13 error npm ERR!     /Users/wenhaoming/.npm/_logs/2020-07-16T04_17_54_640Z-debug.log
 13 error
-13 error > v-reactive-hooks@0.0.6-0 build /Users/wenhaoming/Desktop/学习/vhook/packages/vhooks
+13 error > v-reactive-hooks@0.0.6-0 build /Users/wenhaoming/Desktop/学习/vhooks/packages/vhooks
 13 error > gulp
 13 error
-13 error [20:33:30] Using gulpfile ~/Desktop/学习/vhook/packages/vhooks/gulpfile.js
+13 error [12:17:51] Using gulpfile ~/Desktop/学习/vhooks/packages/vhooks/gulpfile.js
+13 error [12:17:51] Starting 'default'...
+13 error [12:17:51] Starting 'clean'...
+13 error [12:17:51] Finished 'clean' after 9.09 ms
+13 error [12:17:51] Starting 'cjs'...
 13 error
-13 error     at /Users/wenhaoming/Desktop/学习/vhook/node_modules/lerna/node_modules/execa/index.js:236:11
+13 error     at /Users/wenhaoming/Desktop/学习/vhooks/node_modules/lerna/node_modules/execa/index.js:236:11
