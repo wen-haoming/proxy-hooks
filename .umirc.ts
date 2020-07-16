@@ -2,10 +2,10 @@ import { defineConfig } from 'dumi';
 
 export default defineConfig({
   title: 'vhooks',
-  outputPath: 'docs-dist',
+  outputPath: 'docs',
   logo: 'https://cn.vuejs.org/images/logo.png',
   resolve: {
-    includes: ['docs', 'packages/vhooks/src'],
+    includes: ['page_docs', 'packages/vhooks/src'],
   },
   base: '/vhooks',
   publicPath: '/vhooks/',
