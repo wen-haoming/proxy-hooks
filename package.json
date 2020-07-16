@@ -19,6 +19,7 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
+  "homepage":"https://wen-haoming.github.io/vhooks/",
   "devDependencies": {
     "@babel/cli": "^7.10.1",
     "@babel/core": "^7.10.2",
