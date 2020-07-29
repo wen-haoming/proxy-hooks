@@ -3,19 +3,7 @@ import { reactive, effect } from '@vue/reactivity';
 import { useCreation } from '../useCreation';
 import debounceFunc from 'lodash.debounce';
 import throttleFunc from 'lodash.throttle';
-
-function _traversalObj(obj) {
-  if (typeof obj === 'object') {
-    for (var key in obj) {
-      if (typeof obj !== 'object') {
-        continue;
-      }
-
-      _traversalObj(obj[key]);
-    }
-  }
-}
-
+import { _traversalObj } from '../utils/helper';
 export function useReactive(initialState, options) {
   if (options === void 0) {
     options = {};
@@ -48,9 +36,12 @@ export function useReactive(initialState, options) {
     }, throttle);
   }, []);
   useEffect(function () {
+    console.log('update');
     effect(function () {
       if (!isUmount) {
-        _traversalObj(state);
+        _traversalObj(state, function () {
+          changeState(Object.assign({}, state));
+        });
 
         if (debounce || throttle) {
           if (debounce) {

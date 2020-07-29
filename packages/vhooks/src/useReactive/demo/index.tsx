@@ -1,6 +1,5 @@
 import React, { useEffect, memo } from 'react';
 import { useReactive } from '../index';
-import { useComputed } from '../../useComputed';
 
 const Demo = () => {
   let state = useReactive({
@@ -10,6 +9,7 @@ const Demo = () => {
         val2: '',
       },
     },
+    arr: [],
   });
 
   let state2 = useReactive(
@@ -34,6 +34,27 @@ const Demo = () => {
     <div>
       <p>计数器 state.count：{state.count}</p>
       <button onClick={() => (state.count += 1)}>state.count++</button>
+      <p>添加数组操作 state.arr: {JSON.stringify(state.arr)}</p>
+
+      <button
+        style={{ marginRight: '10px' }}
+        onClick={() => state.arr.push(Math.floor(Math.random() * 100))}
+      >
+        push
+      </button>
+      <button style={{ marginRight: '10px' }} onClick={() => state.arr.pop()}>
+        pop
+      </button>
+      <button style={{ marginRight: '10px' }} onClick={() => state.arr.shift()}>
+        shift
+      </button>
+      <button
+        style={{ marginRight: '10px' }}
+        onClick={() => state.arr.unshift(Math.floor(Math.random() * 100))}
+      >
+        unshift
+      </button>
+
       <p>支持数据嵌套 state.val.val1.val2：{state.val.val1.val2}</p>
       <input
         style={{ width: 220, borderWidth: 1 }}

@@ -17,17 +17,7 @@ var lodash_debounce_1 = tslib_1.__importDefault(require('lodash.debounce'));
 
 var lodash_throttle_1 = tslib_1.__importDefault(require('lodash.throttle'));
 
-function _traversalObj(obj) {
-  if (typeof obj === 'object') {
-    for (var key in obj) {
-      if (typeof obj !== 'object') {
-        continue;
-      }
-
-      _traversalObj(obj[key]);
-    }
-  }
-}
+var helper_1 = require('../utils/helper');
 
 function useReactive(initialState, options) {
   if (options === void 0) {
@@ -61,9 +51,12 @@ function useReactive(initialState, options) {
     }, throttle);
   }, []);
   react_1.useEffect(function () {
+    console.log('update');
     reactivity_1.effect(function () {
       if (!isUmount) {
-        _traversalObj(state);
+        helper_1._traversalObj(state, function () {
+          changeState(Object.assign({}, state));
+        });
 
         if (debounce || throttle) {
           if (debounce) {

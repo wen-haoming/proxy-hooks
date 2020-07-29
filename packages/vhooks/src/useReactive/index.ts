@@ -4,17 +4,7 @@ import { reactive, effect } from '@vue/reactivity';
 import { useCreation } from '../useCreation';
 import debounceFunc from 'lodash.debounce';
 import throttleFunc from 'lodash.throttle';
-
-function _traversalObj<S extends object>(obj: S) {
-  if (typeof obj === 'object') {
-    for (let key in obj) {
-      if (typeof obj !== 'object') {
-        continue;
-      }
-      _traversalObj(obj[key] as any);
-    }
-  }
-}
+import { _traversalObj } from '../utils/helper';
 
 interface Options {
   debounce?: number; // 防抖
@@ -42,9 +32,12 @@ export function useReactive<S extends object>(
   );
 
   useEffect(() => {
+    console.log('update');
     effect(() => {
       if (!isUmount) {
-        _traversalObj(state);
+        _traversalObj(state, () => {
+          changeState({ ...(state as S) });
+        });
         if (debounce || throttle) {
           if (debounce) {
             debounceFn();
