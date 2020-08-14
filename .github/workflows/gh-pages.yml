@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-        with:
-          ref: master
       - run: yarn install
       - run: yarn build:doc
       - name: Deploy
@@ -20,13 +18,3 @@ jobs:
           BRANCH: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-  build:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: master
-      - run: tar -czvf vhooks.tar ./docs
-      - run: scp ./vhooks.tar root@47.107.232.30:~
-      - run: ssh root@47.107.232.30 "tar zxvf ~/vhooks.tar && mv -f docs/* /home/nginx/html/vhooks"
-      - name: Send to my server
