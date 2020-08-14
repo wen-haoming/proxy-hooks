@@ -12,6 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn install
       - run: yarn build:doc
+      - uses: manyuanrong/setup-ossutil@v1.0
       - run: tar -czvf vhooks.tar ./docs
       - run: scp ./vhooks.tar root@47.107.232.30:~
       - run: ssh root@47.107.232.30 "tar zxvf ~/vhooks.tar && mv -f docs/* /home/nginx/html/vhooks"
