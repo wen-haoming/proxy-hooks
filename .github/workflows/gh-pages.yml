@@ -12,6 +12,9 @@ jobs:
       - uses: actions/checkout@v2
       - run: yarn install
       - run: yarn build:doc
+      - run: tar -czvf vhooks.tar ./docs
+      - run: scp ./vhooks.tar root@47.107.232.30:~
+      - run: ssh root@47.107.232.30 "tar zxvf ~/vhooks.tar && mv -f docs/* /home/nginx/html/vhooks"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
