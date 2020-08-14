@@ -1,41 +1,134 @@
-import React, { useEffect } from 'react';
-import { act, renderHook } from '@testing-library/react-hooks';
-import { shallow } from 'enzyme';
-import { useReactive } from '../index';
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import Demo from '../demo';
 import { sleep } from '../../utils/testingHelpers';
+import { act } from 'react-dom/test-utils';
+describe('test useReactive feature', () => {
+  it('test count ', () => {
+    let wrap = render(<Demo />);
 
-describe('useReactive', () => {
-  const { result } = renderHook(() =>
-    useReactive({ value: 0, val: { val: 0 } }),
-  );
-  test('initial value ', () => {
-    expect(result.current.value).toBe(0);
-    expect(result.current.val.val).toBe(0);
-  });
-  test('update value', () => {
+    let count = wrap.getByRole('addCount');
+    let addCountBtn = wrap.getByRole('addCountBtn');
+    let subCountBtn = wrap.getByRole('subCountBtn');
+
     act(() => {
-      result.current.value += 1;
+      fireEvent.click(addCountBtn);
     });
-    expect(result.current.value).toBe(1);
+    expect(count.textContent).toBe('1');
+
     act(() => {
-      result.current.value += 2;
+      fireEvent.click(addCountBtn);
+      fireEvent.click(addCountBtn);
     });
-    expect(result.current.value).toBe(3);
+    expect(count.textContent).toBe('3');
+
     act(() => {
-      result.current.val.val += 2;
+      fireEvent.click(subCountBtn);
     });
-    expect(result.current.val.val).toBe(2);
+    expect(count.textContent).toBe('2');
+
+    act(() => {
+      fireEvent.click(subCountBtn);
+      fireEvent.click(subCountBtn);
+      fireEvent.click(subCountBtn);
+      fireEvent.click(subCountBtn);
+      fireEvent.click(subCountBtn);
+    });
+    expect(count.textContent).toBe('-3');
   });
 
-  test('test dom', async () => {
-    let hook = renderHook(() =>
-      useReactive({ value: '3' }, { debounce: 3000 }),
-    );
-    let wrap = shallow(<div>{hook.result.current.value}</div>);
+  it('test array', () => {
+    let wrap = render(<Demo />);
+    let testArray = wrap.getByRole('test-array');
+    let pushbtn = wrap.getByRole('pushbtn');
+    let popbtn = wrap.getByRole('popbtn');
+    let shiftbtn = wrap.getByRole('shiftbtn');
+    let unshiftbtn = wrap.getByRole('unshiftbtn');
     act(() => {
-      hook.result.current.value = '4';
+      fireEvent.click(pushbtn);
     });
-    await sleep(4000);
-    expect(wrap.find('div').contains('4')).toBeTruthy();
+    expect(JSON.parse(testArray.textContent).length).toBe(1);
+    act(() => {
+      fireEvent.click(popbtn);
+    });
+    expect(JSON.parse(testArray.textContent).length).toBe(0);
+    act(() => {
+      fireEvent.click(unshiftbtn);
+    });
+    expect(JSON.parse(testArray.textContent).length).toBe(1);
+    act(() => {
+      fireEvent.click(shiftbtn);
+    });
+    expect(JSON.parse(testArray.textContent).length).toBe(0);
+  });
+
+  it('test input1', () => {
+    let wrap = render(<Demo />);
+
+    let input = wrap.getByRole('input1');
+    let inputVal = wrap.getByRole('inputVal1');
+    act(() => {
+      fireEvent.change(input, { target: { value: 'a' } });
+    });
+    expect(inputVal.textContent).toBe('a');
+
+    act(() => {
+      fireEvent.change(input, { target: { value: 'bbb' } });
+    });
+    expect(inputVal.textContent).toBe('bbb');
+  });
+
+  it('test debounce', async () => {
+    let wrap = render(<Demo />);
+
+    let input = wrap.getByRole('debounceInput');
+    let inputVal = wrap.getByRole('debounceVal');
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'abc' } });
+      await sleep(200);
+    });
+    expect(inputVal.textContent).toBe('');
+    await act(async () => {
+      await sleep(200);
+    });
+    expect(inputVal.textContent).toBe('abc');
+  });
+
+  it('test debounce', async () => {
+    let wrap = render(<Demo />);
+
+    let input = wrap.getByRole('debounceInput');
+    let inputVal = wrap.getByRole('debounceVal');
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'abc' } });
+      await sleep(200);
+    });
+    expect(inputVal.textContent).toBe('');
+    await act(async () => {
+      await sleep(200);
+    });
+    expect(inputVal.textContent).toBe('abc');
+  });
+
+  it('test throttle', async () => {
+    let wrap = render(<Demo />);
+
+    let input = wrap.getByRole('throttleInput');
+    let inputVal = wrap.getByRole('throttleVal');
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'aaa' } });
+      await sleep(1000);
+    });
+
+    expect(inputVal.textContent).toBe('aaa');
+
+    await act(async () => {
+      fireEvent.change(input, { target: { value: 'bbb' } });
+      await sleep(1000);
+    });
+    expect(inputVal.textContent).toBe('bbb');
   });
 });

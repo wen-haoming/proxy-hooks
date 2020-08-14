@@ -22,36 +22,49 @@ export function useReactive<S extends object>(
   let state = useCreation(() => reactive(cueState), []);
 
   let debounceFn = useCreation(
-    () => debounceFunc(() => changeState({ ...(state as S) }), debounce),
+    () =>
+      debounce &&
+      debounceFunc(() => {
+        !isUmount && changeState({ ...(state as S) });
+      }, debounce),
     [],
   );
 
   let throttleFu = useCreation(
-    () => throttleFunc(() => changeState({ ...(state as S) }), throttle),
+    () =>
+      throttle &&
+      throttleFunc(() => {
+        !isUmount && changeState({ ...(state as S) });
+      }, throttle),
     [],
   );
 
   useEffect(() => {
-    console.log('update');
     effect(() => {
-      if (!isUmount) {
-        _traversalObj(state, () => {
-          changeState({ ...(state as S) });
-        });
-        if (debounce || throttle) {
-          if (debounce) {
-            debounceFn();
-          } else if (throttle) {
-            throttleFu();
-          }
-        } else {
-          changeState({ ...(state as S) });
-        }
+      if (isUmount) return;
+
+      _traversalObj(state, () => {
+        changeState({ ...(state as S) });
+      });
+
+      if (debounce) {
+        debounceFn();
+        return;
       }
+
+      if (throttle) {
+        throttleFu();
+        return;
+      }
+
+      changeState({ ...(state as S) });
     });
 
     return () => {
       isUmount = true;
+      state = null;
+      debounceFn = null;
+      throttleFu = null;
     };
   }, []);
 
