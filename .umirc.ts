@@ -8,6 +8,6 @@ export default defineConfig({
     includes: ['page_docs', 'packages/vhooks/src'],
   },
   base: '/vhooks',
-  publicPath: '/v-reactive-hooks',
+  publicPath: '/v-reactive-hooks/',
   // more config: https://d.umijs.org/config
 });
