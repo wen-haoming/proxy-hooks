@@ -8,6 +8,15 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: yarn build:doc
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          BRANCH: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
       - name: Copy single file to remote
         uses: garygrossgarten/github-action-scp@release
         with:
