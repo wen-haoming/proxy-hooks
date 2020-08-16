@@ -12,10 +12,10 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: docs
-          remote: scp/
+          remote: /home/nginx/
           host: 47.107.232.30
           username: root
-          password: Ming_wen31237644
+          password: ${{secrets.PASSWORD}}
       # - name: executing remote ssh commands using password
       #   uses: appleboy/ssh-action@master
       #   with:
