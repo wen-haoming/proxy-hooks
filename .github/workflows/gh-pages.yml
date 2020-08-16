@@ -18,15 +18,12 @@ jobs:
           BRANCH: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-  build:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - uses: jerray/setup-aliyun-cli-action@v1.0.0
-        with:
-          aliyun-cli-version: '3.0.29'
-          mode: AK
-          access-key-id: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
-          access-key-secret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
-          region: ${{ secrets.ALIYUN_REGION }}
-      - run: aliyun oss cp ./docs oss://backet/path -r -u
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@v2.1.1
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: '-rltgoDzvO --delete'
+          SOURCE: 'docs/'
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
