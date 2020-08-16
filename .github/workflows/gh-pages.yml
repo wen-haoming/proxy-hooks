@@ -8,11 +8,20 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
-      - name: Copy single file to remote
-        uses: garygrossgarten/github-action-scp@release
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
         with:
-          local: docs
-          remote: scp/directory
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          port: 22
+          source: 'docs'
+          target: 'test'
+      # - name: Copy single file to remote
+      #   uses: garygrossgarten/github-action-scp@release
+      #   with:
+      #     local: docs
+      #     remote: scp/directory
+      #     host:
+      #     username:
+      #     password:
