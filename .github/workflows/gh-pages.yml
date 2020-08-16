@@ -8,6 +8,10 @@ jobs:
   deploy:
     runs-on: ubuntu-18.04
     steps:
+      - name: curl
+        uses: wei/curl@master
+        with:
+          args: 47.107.232.30
       - name: copy file via ssh password
         uses: appleboy/scp-action@master
         with:
