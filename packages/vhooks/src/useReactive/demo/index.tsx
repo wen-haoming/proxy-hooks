@@ -1,5 +1,5 @@
 import React, { useEffect, memo } from 'react';
-import { useReactive } from '../index';
+import { useReactive } from 'v-reactive-hooks';
 
 const Demo = () => {
   let state = useReactive({

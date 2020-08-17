@@ -1,10 +1,5 @@
-/**
- * hideActions: ["../useReactive"]
- * hideActions:
- *   - CSB
- */
 import React from 'react';
-import { useMethods } from '../index';
+import { useMethods } from 'v-reactive-hooks';
 
 export default () => {
   const [state, boundMethods] = useMethods(
