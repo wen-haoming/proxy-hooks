@@ -26,36 +26,46 @@ export function useReactive(initialState, options) {
     return reactive(cueState);
   }, []);
   var debounceFn = useCreation(function () {
-    return debounceFunc(function () {
-      return changeState(Object.assign({}, state));
-    }, debounce);
+    return (
+      debounce &&
+      debounceFunc(function () {
+        !isUmount && changeState(Object.assign({}, state));
+      }, debounce)
+    );
   }, []);
   var throttleFu = useCreation(function () {
-    return throttleFunc(function () {
-      return changeState(Object.assign({}, state));
-    }, throttle);
+    return (
+      throttle &&
+      throttleFunc(function () {
+        !isUmount && changeState(Object.assign({}, state));
+      }, throttle)
+    );
   }, []);
   useEffect(function () {
-    console.log('update');
     effect(function () {
-      if (!isUmount) {
-        _traversalObj(state, function () {
-          changeState(Object.assign({}, state));
-        });
+      if (isUmount) return;
 
-        if (debounce || throttle) {
-          if (debounce) {
-            debounceFn();
-          } else if (throttle) {
-            throttleFu();
-          }
-        } else {
-          changeState(Object.assign({}, state));
-        }
+      _traversalObj(state, function () {
+        changeState(Object.assign({}, state));
+      });
+
+      if (debounce) {
+        debounceFn();
+        return;
       }
+
+      if (throttle) {
+        throttleFu();
+        return;
+      }
+
+      changeState(Object.assign({}, state));
     });
     return function () {
       isUmount = true;
+      state = null;
+      debounceFn = null;
+      throttleFu = null;
     };
   }, []);
   return state;

@@ -41,36 +41,46 @@ function useReactive(initialState, options) {
     return reactivity_1.reactive(cueState);
   }, []);
   var debounceFn = useCreation_1.useCreation(function () {
-    return lodash_debounce_1['default'](function () {
-      return changeState(Object.assign({}, state));
-    }, debounce);
+    return (
+      debounce &&
+      lodash_debounce_1['default'](function () {
+        !isUmount && changeState(Object.assign({}, state));
+      }, debounce)
+    );
   }, []);
   var throttleFu = useCreation_1.useCreation(function () {
-    return lodash_throttle_1['default'](function () {
-      return changeState(Object.assign({}, state));
-    }, throttle);
+    return (
+      throttle &&
+      lodash_throttle_1['default'](function () {
+        !isUmount && changeState(Object.assign({}, state));
+      }, throttle)
+    );
   }, []);
   react_1.useEffect(function () {
-    console.log('update');
     reactivity_1.effect(function () {
-      if (!isUmount) {
-        helper_1._traversalObj(state, function () {
-          changeState(Object.assign({}, state));
-        });
+      if (isUmount) return;
 
-        if (debounce || throttle) {
-          if (debounce) {
-            debounceFn();
-          } else if (throttle) {
-            throttleFu();
-          }
-        } else {
-          changeState(Object.assign({}, state));
-        }
+      helper_1._traversalObj(state, function () {
+        changeState(Object.assign({}, state));
+      });
+
+      if (debounce) {
+        debounceFn();
+        return;
       }
+
+      if (throttle) {
+        throttleFu();
+        return;
+      }
+
+      changeState(Object.assign({}, state));
     });
     return function () {
       isUmount = true;
+      state = null;
+      debounceFn = null;
+      throttleFu = null;
     };
   }, []);
   return state;

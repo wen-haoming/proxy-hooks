@@ -1,7 +1,11 @@
 import { useMemo } from 'react';
 import { useReactive } from '../useReactive';
+import { useCreation } from '../useCreation';
 export function useMethods(initialValue, methods) {
   var state = useReactive(initialValue);
+  methods = useCreation(function () {
+    return methods;
+  }, []);
   var boundMethods = useMemo(
     function () {
       return Object.entries(methods).reduce(function (methods, _ref) {
@@ -9,7 +13,7 @@ export function useMethods(initialValue, methods) {
           fn = _ref[1];
 
         var method = function method() {
-          fn(state);
+          fn.apply(void 0, arguments);
         };
 
         methods[name] = method;

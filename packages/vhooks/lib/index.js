@@ -7,3 +7,5 @@ Object.defineProperty(exports, '__esModule', {
 var tslib_1 = require('tslib');
 
 tslib_1.__exportStar(require('./useReactive'), exports);
+
+tslib_1.__exportStar(require('./useMethods'), exports);

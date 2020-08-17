@@ -2,8 +2,8 @@
 title: useReactivity
 order: 0
 group:
-  title: reactivity
-  path: /reactivity
+  title: hooks
+  path: /hooks
 ---
 
 ## useReactive

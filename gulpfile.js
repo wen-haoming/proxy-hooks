@@ -54,7 +54,7 @@ gulp.task('declaration', () => {
 gulp.task('copyReadme', async () => {
   await gulp
     .src('../../README.md')
-    .pipe(gulp.dest('../../packages/src/ahooks'));
+    .pipe(gulp.dest('../../packages/src/vhooks'));
 });
 
 exports.default = gulp.series(

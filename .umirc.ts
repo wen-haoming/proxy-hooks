@@ -1,13 +1,15 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  title: 'vhooks',
+  title: 'reactive-hooks',
   outputPath: 'docs',
-  logo: 'https://cn.vuejs.org/images/logo.png',
   resolve: {
     includes: ['page_docs', 'packages/vhooks/src'],
   },
   base: '/',
-  publicPath: '/',
+  publicPath: '/hooks',
+  history: {
+    type: 'hash',
+  },
   // more config: https://d.umijs.org/config
 });
