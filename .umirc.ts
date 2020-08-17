@@ -7,7 +7,7 @@ export default defineConfig({
   resolve: {
     includes: ['page_docs', 'packages/vhooks/src'],
   },
-  base: '/vhooks',
+  base: '/',
   publicPath: '/',
   // more config: https://d.umijs.org/config
 });

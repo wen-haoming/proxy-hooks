@@ -21,7 +21,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: docs
-          remote: /home/nginx/
+          remote: /home/nginx/vhooks
           host: ${{secrets.HOST}}
           username: root
           password: ${{secrets.PASSWORD}}
