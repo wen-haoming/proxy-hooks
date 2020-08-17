@@ -7,7 +7,7 @@ export default defineConfig({
     includes: ['page_docs', 'packages/vhooks/src'],
   },
   base: '/',
-  publicPath: '/hooks',
+  publicPath: '/hooks/',
   history: {
     type: 'hash',
   },
