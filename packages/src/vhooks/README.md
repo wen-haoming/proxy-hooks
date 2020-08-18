@@ -1,7 +1,7 @@
 # reactive-hooks
 
 ```bash
-npm i reactive-hooks --save
+npm i  v-reactive-hooks --save
 ```
 
 ## 基于 vue3 响应式模块封装的 react-hooks
