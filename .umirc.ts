@@ -1,7 +1,7 @@
 import { defineConfig } from 'dumi';
 
 export default defineConfig({
-  title: 'reactive-hooks',
+  title: 'v-reactive-hooks',
   outputPath: 'docs',
   resolve: {
     includes: ['page_docs', 'packages/vhooks/src'],

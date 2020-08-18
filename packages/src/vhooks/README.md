@@ -1,4 +1,4 @@
-# reactive-hooks
+# v-reactive-hooks
 
 ```bash
 npm i  v-reactive-hooks --save
