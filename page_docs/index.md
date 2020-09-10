@@ -1,7 +1,7 @@
 # Home
 
 ```bash
-npm i v-reactive-hooks --save
+npm iproxy-hooks --save
 ```
 
 ## 基于 vue3 响应式模块封装的 react-hooks
