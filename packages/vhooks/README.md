@@ -1,3 +1,9 @@
-# vhooks
+# proxy-hooks
 
-基于 vue3 响应式模块封装的 react-hooks 方法库
+```bash
+npm i  proxy-hooks --save
+```
+
+## 利用数据的响应式进行视图刷新
+
+http://whm.zone/hooks

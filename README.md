@@ -1,7 +1,7 @@
 # proxy-hooks
 
 ```bash
-npm i  v-reactive-hooks --save
+npm i  proxy-hooks --save
 ```
 
 ## 利用数据的响应式进行视图刷新
