@@ -2,27 +2,31 @@ import { useMemo } from 'react';
 import { useReactive } from '../useReactive';
 import { useCreation } from '../useCreation';
 
+type BoundMethodsObj<O, M> = {
+  [key in keyof M]: (state: O, ...args: Array<any>) => any;
+};
+
+type BoundReturnObjs<O> = {
+  [key in keyof O]: (...args: Array<any>) => void;
+};
+
 export function useMethods<S extends object, Y extends object>(
   initialValue: S,
-  methods: Y,
+  methods: BoundMethodsObj<S, Y>,
 ) {
-  type BoundMethodsObj = {
-    [key in keyof Y]: (...args: any[]) => any;
-  };
+  const [state, immerState] = useReactive(initialValue);
 
-  const state = useReactive(initialValue);
-
-  methods = useCreation(() => methods, []);
+  methods = useMemo(() => methods, []);
 
   const boundMethods = useMemo(() => {
     return Object.entries(methods).reduce((methods, [name, fn]) => {
       const method = (...args) => {
-        fn(...args);
+        (fn as Function)(state, ...args);
       };
       methods[name] = method;
       return methods;
     }, {});
   }, [methods]);
 
-  return [state, boundMethods] as [S, BoundMethodsObj];
+  return [immerState, boundMethods] as [S, BoundReturnObjs<Y>];
 }

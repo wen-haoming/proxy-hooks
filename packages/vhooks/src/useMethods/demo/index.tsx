@@ -1,24 +1,29 @@
-import React from 'react';
-import { useMethods } from 'v-reactive-hooks';
+import React, { useEffect } from 'react';
+import { useMethods } from '../index';
 
 export default () => {
   const [state, boundMethods] = useMethods(
-    { val: [], str: ' ', count: 0 },
+    { arr: [], str: ' ', count: 0 },
     {
-      push() {
-        state.val.push(Math.floor(Math.random() * 100));
+      push(state) {
+        state.arr.push(11);
       },
-      pop() {
-        state.val.pop();
+      pop(state) {
+        state.arr.pop();
       },
-      addCount() {
+      addCount(state) {
         state.count += 1;
       },
-      changeStr(e: React.ChangeEvent<HTMLInputElement>) {
+      changeStr(state, e: React.ChangeEvent<HTMLInputElement>) {
         state.str = e.target.value;
       },
     },
   );
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
   return (
     <div>
       <p role="countVal">{state.count}</p>
@@ -26,7 +31,7 @@ export default () => {
         count++
       </button>
       <p>
-        val: <span role="arrVal">{JSON.stringify(state.val)}</span>{' '}
+        arr: <span role="arrVal">{JSON.stringify(state.arr)}</span>{' '}
       </p>
       <button role="pushArr" onClick={boundMethods.push}>
         push

@@ -1,5 +1,6 @@
 ---
 title: useMethods
+order: 2
 group:
   title: hooks
   path: /hooks
@@ -11,7 +12,7 @@ group:
 
 ## 代码演示
 
-<code defaultShowCode hideActions='["IUUU"]' src="./demo/index.tsx" />
+<code   src="./demo/index.tsx" />
 
 ## API
 
