@@ -1,5 +1,5 @@
 import React, { useEffect, memo, useState } from 'react';
-import { useReactive } from '../index';
+import { useReactive } from 'proxy-hooks';
 
 const Demo = () => {
   const [state, immerState] = useReactive({

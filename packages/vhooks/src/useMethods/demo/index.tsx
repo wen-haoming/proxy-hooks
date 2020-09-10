@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useMethods } from '../index';
+import { useMethods } from 'proxy-hooks';
 
 export default () => {
   const [state, boundMethods] = useMethods(
