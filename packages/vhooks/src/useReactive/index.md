@@ -1,6 +1,9 @@
 ---
 title: useReactivity
 order: 0
+nav:
+  title: hooks
+  path: /hooks
 group:
   title: hooks
   path: /hooks
@@ -12,7 +15,7 @@ group:
 
 ## 代码演示
 
-<code src="./demo/index.tsx" />
+<code src="./demo/index.tsx" desc="为了保持react的数据不可变性,`useReactive` 第一个参数 为操作数据的`可变对象`直接属性修改能够触发视图更新 , 第二个参数为一个`全新的引用地址` ,视图每次更新后都是一个全新的引用" />
 
 ## API
 

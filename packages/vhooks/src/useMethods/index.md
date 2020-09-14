@@ -1,6 +1,8 @@
 ---
 title: useMethods
-order: 2
+nav:
+  title: hooks
+  path: /hooks
 group:
   title: hooks
   path: /hooks

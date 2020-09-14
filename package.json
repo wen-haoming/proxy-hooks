@@ -1,6 +1,10 @@
 {
   "name": "v-hooks",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wen-haoming/proxy-hooks"
+  },
   "scripts": {
     "init": "rm -rf node_modules && npm install && npm run clean && npm run bootstrap && npm run build",
     "start": "npm run dev",
