@@ -19,7 +19,7 @@ function observer<S extends object>(
   return new Proxy<S>(initialState, {
     get(obj, prop, receiver) {
       if (isObject(obj[prop])) {
-        let newObj = (layerObj[prop] = {});
+        let newObj = (layerObj[prop] = { ...obj[prop] });
         // 传递一个新对象下一层
         return observer(obj[prop], callback, rootObj, newObj, immutableState);
       } else if (isArray(obj[prop])) {
@@ -27,7 +27,7 @@ function observer<S extends object>(
         let newObj = (layerObj[prop] = [...obj[prop]]);
         return observer(obj[prop], callback, rootObj, newObj, immutableState);
       } else {
-        //  获取数据
+        //获取数据
         return Reflect.get(obj, prop, receiver);
       }
     },
@@ -44,10 +44,26 @@ export function useReactive<S extends object>(initialState: S): [S, S] {
   let [immutable, setImmutable] = useState<S>(initialState);
 
   let proxyState = useMemo<S>(() => {
+    let pending = false;
+    let callback = [];
+
+    function nextTick() {
+      let newState = Object.assign.apply(null, callback);
+      setImmutable(newState);
+      callback = [];
+      pending = false;
+    }
+
     return observer(
       initialState,
       (newState) => {
-        setImmutable(newState);
+        if (pending) {
+          callback.push(newState);
+        } else {
+          pending = true;
+          callback.push(newState);
+          Promise.resolve().then(nextTick);
+        }
       },
       {},
     );

@@ -33,7 +33,7 @@ function observer(initialState, callback, rootObj, layerObj, immutableState) {
   return new Proxy(initialState, {
     get: function get(obj, prop, receiver) {
       if (helper_1.isObject(obj[prop])) {
-        var newObj = (layerObj[prop] = {}); // 传递一个新对象下一层
+        var newObj = (layerObj[prop] = Object.assign({}, obj[prop])); // 传递一个新对象下一层
 
         return observer(obj[prop], callback, rootObj, newObj, immutableState);
       } else if (helper_1.isArray(obj[prop])) {
@@ -42,7 +42,7 @@ function observer(initialState, callback, rootObj, layerObj, immutableState) {
 
         return observer(obj[prop], callback, rootObj, _newObj, immutableState);
       } else {
-        //  获取数据
+        //获取数据
         return Reflect.get(obj, prop, receiver);
       }
     },
@@ -61,10 +61,26 @@ function useReactive(initialState) {
     setImmutable = _react_1$useState[1];
 
   var proxyState = react_1.useMemo(function () {
+    var pending = false;
+    var callback = [];
+
+    function nextTick() {
+      var newState = Object.assign.apply(null, callback);
+      setImmutable(newState);
+      callback = [];
+      pending = false;
+    }
+
     return observer(
       initialState,
       function (newState) {
-        setImmutable(newState);
+        if (pending) {
+          callback.push(newState);
+        } else {
+          pending = true;
+          callback.push(newState);
+          Promise.resolve().then(nextTick);
+        }
       },
       {},
     );

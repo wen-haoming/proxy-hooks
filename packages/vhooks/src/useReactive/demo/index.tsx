@@ -10,10 +10,18 @@ const Demo = () => {
     },
   });
 
+  useEffect(() => {
+    console.timeEnd('trace');
+  }, [immerState]);
+
   return (
     <div>
       <p>
         count<span role="addCount">{immerState.count}</span>
+      </p>
+      <p>
+        count2{' '}
+        <span role="addCount">{JSON.stringify(immerState.count2.count3)}</span>
       </p>
       <p>
         arr：
@@ -22,15 +30,38 @@ const Demo = () => {
 
       <button
         onClick={() => {
+          state.count += 100;
+          state.count += 100;
+          state.count += 100;
+          state.count *= 3;
           state.count += 1;
+          state.count += 1;
+          console.time('trace');
         }}
       >
         count++
       </button>
-
       <button
         onClick={() => {
-          state.count2.arr.push((Math.random() * 10) | 0);
+          state.count2.count3 += 1;
+          state.count2.count3 += 1;
+          state.count2.count3 += 1;
+          state.count2.count3 += 1;
+          state.count2.count3 += 1;
+          console.time('trace');
+        }}
+      >
+        count3++
+      </button>
+      <button
+        onClick={() => {
+          state.count2.arr.push(1);
+          state.count2.arr.push(1);
+          state.count2.arr.push(1);
+          state.count2.arr.push(1);
+          state.count2.arr.push(1);
+
+          console.time('trace');
         }}
       >
         push
