@@ -1,6 +1,6 @@
 {
   "name": "proxy-hooks",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "reactive hooks",
   "main": "./lib/index.js",
   "scripts": {
