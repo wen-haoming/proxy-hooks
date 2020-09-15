@@ -66,6 +66,7 @@ export function useReactive(initialState) {
     return observer(
       initialState,
       function (newState) {
+        // setImmutable(newState);
         if (pending) {
           callback.push(newState);
         } else {

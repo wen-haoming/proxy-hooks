@@ -6,6 +6,7 @@ const Demo = () => {
     count: 0,
     count2: {
       count3: 0,
+      count4: 0,
       arr: [],
     },
   });
@@ -27,7 +28,7 @@ const Demo = () => {
         arr：
         <span role="addCount">{JSON.stringify(immerState.count2.arr)}</span>
       </p>
-
+      <p>{JSON.stringify(immerState)}</p>
       <button
         onClick={() => {
           state.count += 100;
@@ -46,8 +47,8 @@ const Demo = () => {
           state.count2.count3 += 1;
           state.count2.count3 += 1;
           state.count2.count3 += 1;
-          state.count2.count3 += 1;
-          state.count2.count3 += 1;
+          state.count2.count4 += 1;
+          state.count2.count4 += 1;
           console.time('trace');
         }}
       >
@@ -60,7 +61,6 @@ const Demo = () => {
           state.count2.arr.push(1);
           state.count2.arr.push(1);
           state.count2.arr.push(1);
-
           console.time('trace');
         }}
       >

@@ -57,6 +57,8 @@ export function useReactive<S extends object>(initialState: S): [S, S] {
     return observer(
       initialState,
       (newState) => {
+        // setImmutable(newState);
+
         if (pending) {
           callback.push(newState);
         } else {

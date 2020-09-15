@@ -1,52 +1,73 @@
-0 silly input [ 'build' ]
-1 silly flags {
-1 silly flags   _: [ 'run' ],
-1 silly flags   'reject-cycles': false,
-1 silly flags   rejectCycles: false,
-1 silly flags   script: 'build',
-1 silly flags   args: []
-1 silly flags }
+0 silly input [ 'publish' ]
+1 silly flags { _: [ 'publish' ], 'reject-cycles': false, rejectCycles: false }
 2 verbose rootPath /Users/wenhaoming/Desktop/practise/vhooks
 3 info version 2.11.0
-4 silly existsSync /Users/wenhaoming/Desktop/practise/vhooks/VERSION
-5 info versioning independent
-6 silly initialize attempt
-7 silly initialize success
-8 silly execute attempt
-9 silly runScriptInDir build [] vhooks
-10 silly getExecOpts { cwd: '/Users/wenhaoming/Desktop/practise/vhooks/packages/vhooks' }
-11 error build Errored while running script in 'v-reactive-hooks'
-12 error execute callback with error
-13 error Error: Command failed: npm run build
-13 error [15:28:58] 'cjs' errored after 2.55 s
-13 error [15:28:58] Error: TypeScript: Compilation failed
-13 error     at Output.mightFinish (/Users/wenhaoming/Desktop/practise/vhooks/node_modules/gulp-typescript/release/output.js:131:43)
-13 error     at /Users/wenhaoming/Desktop/practise/vhooks/node_modules/gulp-typescript/release/output.js:44:22
-13 error     at processTicksAndRejections (internal/process/task_queues.js:93:5)
-13 error [15:28:58] 'default' errored after 2.61 s
-13 error npm ERR! code ELIFECYCLE
-13 error npm ERR! errno 1
-13 error npm ERR!proxy-hooks@0.3.0 build: `gulp`
-13 error npm ERR! Exit status 1
-13 error npm ERR!
-13 error npm ERR! Failed at theproxy-hooks@0.3.0 build script.
-13 error npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
-13 error npm WARN Local package.json exists, but node_modules missing, did you mean to install?
-13 error
-13 error npm ERR! A complete log of this run can be found in:
-13 error npm ERR!     /Users/wenhaoming/.npm/_logs/2020-09-10T07_28_58_851Z-debug.log
-13 error
-13 error >proxy-hooks@0.3.0 build /Users/wenhaoming/Desktop/practise/vhooks/packages/vhooks
-13 error > gulp
-13 error
-13 error [15:28:56] Using gulpfile ~/Desktop/practise/vhooks/packages/vhooks/gulpfile.js
-13 error [15:28:56] Starting 'default'...
-13 error [15:28:56] Starting 'clean'...
-13 error [15:28:56] Finished 'clean' after 59 ms
-13 error [15:28:56] Starting 'cjs'...
-13 error [31msrc/useMethods/index.ts(28,9): [39merror TS2349: This expression is not callable.
-13 error   Type '{}' has no call signatures.
-13 error TypeScript: [35m1[39m semantic error
-13 error TypeScript: emit [36msucceeded[39m (with errors)
-13 error
-13 error     at /Users/wenhaoming/Desktop/practise/vhooks/node_modules/lerna/node_modules/execa/index.js:236:11
+4 silly isInitialized
+5 silly isInitialized true
+6 silly existsSync /Users/wenhaoming/Desktop/practise/vhooks/VERSION
+7 info versioning independent
+8 silly initialize attempt
+9 silly isDetachedHead
+10 silly getCurrentBranch
+11 verbose getCurrentBranch master
+12 verbose isDetachedHead false
+13 silly getCurrentBranch
+14 verbose getCurrentBranch master
+15 silly getUpdates
+16 info Checking for updated packages...
+17 silly hasTags
+18 verbose hasTags true
+19 silly getLastTag
+20 verbose getLastTag proxy-hooks@0.3.7
+21 info Comparing with proxy-hooks@0.3.7.
+22 silly diffSinceIn proxy-hooks@0.3.7 packages/vhooks
+23 silly diff packages/vhooks/es/hooks/index.js
+23 silly diff packages/vhooks/es/index.js
+23 silly diff packages/vhooks/es/useCreation/index.js
+23 silly diff packages/vhooks/es/useMethods/index.d.ts
+23 silly diff packages/vhooks/es/useMethods/index.js
+23 silly diff packages/vhooks/es/useReactive/index.js
+23 silly diff packages/vhooks/es/useTransition/Popup.js
+23 silly diff packages/vhooks/es/useTransition/index.d.ts
+23 silly diff packages/vhooks/es/useTransition/index.js
+23 silly diff packages/vhooks/es/useTrigger/Popup.js
+23 silly diff packages/vhooks/es/useTrigger/index.d.ts
+23 silly diff packages/vhooks/es/useTrigger/index.js
+23 silly diff packages/vhooks/es/utils/helper.d.ts
+23 silly diff packages/vhooks/es/utils/helper.js
+23 silly diff packages/vhooks/es/utils/testingHelpers.js
+23 silly diff packages/vhooks/lib/hooks/index.js
+23 silly diff packages/vhooks/lib/index.js
+23 silly diff packages/vhooks/lib/useCreation/index.js
+23 silly diff packages/vhooks/lib/useMethods/index.d.ts
+23 silly diff packages/vhooks/lib/useMethods/index.js
+23 silly diff packages/vhooks/lib/useReactive/index.js
+23 silly diff packages/vhooks/lib/useTransition/Popup.js
+23 silly diff packages/vhooks/lib/useTransition/index.d.ts
+23 silly diff packages/vhooks/lib/useTransition/index.js
+23 silly diff packages/vhooks/lib/useTrigger/Popup.js
+23 silly diff packages/vhooks/lib/useTrigger/index.d.ts
+23 silly diff packages/vhooks/lib/useTrigger/index.js
+23 silly diff packages/vhooks/lib/utils/helper.d.ts
+23 silly diff packages/vhooks/lib/utils/helper.js
+23 silly diff packages/vhooks/lib/utils/testingHelpers.js
+23 silly diff packages/vhooks/package.json
+23 silly diff packages/vhooks/src/useReactive/demo/index.tsx
+23 silly diff packages/vhooks/src/useReactive/index.ts
+24 verbose updated proxy-hooks
+25 info Checking for prereleased packages...
+26 silly collectDependents
+27 silly isPackageDependentOf proxy-hooks proxy-hooks
+28 silly collectUpdates
+29 verbose has filtered update proxy-hooks
+30 error initialize caught error
+31 error Error: setRawMode EIO
+31 error     at ReadStream.setRawMode (tty.js:77:31)
+31 error     at Interface._setRawMode (readline.js:298:16)
+31 error     at new Interface (readline.js:258:10)
+31 error     at Object.createInterface (readline.js:95:10)
+31 error     at module.exports (/Users/wenhaoming/Desktop/practise/vhooks/node_modules/lerna/node_modules/inquirer/lib/ui/baseUI.js:14:24)
+31 error     at new module.exports (/Users/wenhaoming/Desktop/practise/vhooks/node_modules/lerna/node_modules/inquirer/lib/ui/prompt.js:14:8)
+31 error     at Object.promptModule [as prompt] (/Users/wenhaoming/Desktop/practise/vhooks/node_modules/lerna/node_modules/inquirer/lib/inquirer.js:26:14)
+31 error     at Function.select (/Users/wenhaoming/Desktop/practise/vhooks/node_modules/lerna/lib/PromptUtilities.js:52:26)
+31 error     at PublishCommand.promptVersion (/Users/wenhaoming/Desktop/practise/vhooks/node_modules/lerna/lib/commands/PublishCommand.js:543:33)
